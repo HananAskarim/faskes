@@ -14,6 +14,23 @@
 
     <title><?= $title; ?></title>
 </head>
+<style>
+    #map {
+        height: 440px;
+    }
+
+    body {
+        background-color: lightslategray;
+    }
+
+    h1 {
+        color: aliceblue;
+    }
+
+    h4 {
+        color: aliceblue;
+    }
+</style>
 
 <body>
 
@@ -26,20 +43,45 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link <?= ($getsegment1 == '') ? 'active' : ''; ?>" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link <?= ($getsegment1 == 'kategori') ? 'active' : ''; ?> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pilih Kategori
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php foreach ($kategori as $data) : ?>
+                                <li><a class="dropdown-item" href="/web/kategori/<?= $data->id_kategori; ?>"><?= $data->nama_kategori; ?></a></li>
+                            <?php endforeach ?>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/home/faskes">Faskes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-danger" href="/login">Login</a>
+                        <a class="nav-link <?= ($getsegment1 == 'about') ? 'active' : ''; ?>" href="/web/about">About</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <?= $this->renderSection('content'); ?>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <?= $this->include('web/layouts/kategorifaskes'); ?>
+                <?= $this->renderSection('content'); ?>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="sticky-footer bg-dark mt-5">
+        <div class="container my-auto p-3">
+            <div class="copyright text-center my-auto">
+                <span class="text-white">copyright &copy;</span>
+            </div>
+        </div>
+    </footer>
+
+    <?= $this->renderSection('scripts'); ?>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

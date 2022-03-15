@@ -19,4 +19,12 @@ class FaskesModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    function faskesKategori($id_kategori)
+    {
+        $builder = $this->db->table('tbl_faskes');
+        $builder->join('kategori', 'kategori.id_kategori = tbl_faskes.id_kategori')->where('tbl_faskes.id_kategori', $id_kategori);
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

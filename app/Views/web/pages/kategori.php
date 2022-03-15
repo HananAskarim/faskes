@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 <div class="mt-3 mb-3">
-    <h1 class="text-center">Pemetaan Fasilitas Kesehatan</h1>
+    <h1 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan</h1>
 </div>
 
 <div class="row">
@@ -28,7 +28,7 @@
             iconSize: [38, 45],
         }
     });
-    <?php foreach ($faskes as $row) : ?>
+    <?php foreach ($faskategori as $row) : ?>
         var marker = L.marker([<?= $row->latitude; ?>, <?= $row->longitude; ?>], {
                 icon: new myIcon({
                     iconUrl: '<?= base_url('assets/uploads/marker/' . $row->marker); ?>'

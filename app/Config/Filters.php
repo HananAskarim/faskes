@@ -40,7 +40,7 @@ class Filters extends BaseConfig
             'usersAuth' => [
                 'except' => [
                     'auth/*',
-                    'home/*',
+                    'web/*',
                     '/',
                 ]
             ]
