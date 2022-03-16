@@ -27,16 +27,18 @@
     // marker
     var myIcon = L.Icon.extend({
         options: {
-            iconSize: [38, 45],
+            iconSize: [38, 40],
         }
     });
+
     <?php foreach ($faskategori as $row) : ?>
+        var informasi = '<table class="table"><tr><td colspan="2"><img src="<?= base_url('assets/uploads/faskes/' . $row->foto); ?>" width="200px" height="200px"></td></tr><tr><td>Nama</td><td>: <?= $row->nama_faskes ?></td></tr><tr><td colspan="2" class="text-center"><a href="/web/detail/<?= $row->id_kategori; ?>" class="btn btn-success">Detail</a></td></tr></table>';
         var marker = L.marker([<?= $row->latitude; ?>, <?= $row->longitude; ?>], {
                 icon: new myIcon({
                     iconUrl: '<?= base_url('assets/uploads/marker/' . $row->marker); ?>'
                 })
             }).addTo(map)
-            .bindPopup("Nama : <?= $row->nama_faskes; ?><br>Alamat : <?= $row->alamat; ?>");
+            .bindPopup(informasi);
     <?php endforeach; ?>
 </script>
 
