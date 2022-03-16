@@ -2,7 +2,9 @@
 
 <?= $this->section('content'); ?>
 <div class="mt-3 mb-3">
-    <h1 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan</h1>
+    <?php foreach ($detailkategori as $data) : ?>
+        <h1 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan <?= $data->nama_kategori; ?></h1>
+    <?php endforeach ?>
 </div>
 
 <div class="row">
@@ -37,4 +39,43 @@
             .bindPopup("Nama : <?= $row->nama_faskes; ?><br>Alamat : <?= $row->alamat; ?>");
     <?php endforeach; ?>
 </script>
+
+<!-- Tabel data -->
+<div class="mt-5 mb-3">
+    <?php foreach ($detailkategori as $data) : ?>
+        <h1 class="text-center">Daftar Tabel <?= $data->nama_kategori; ?></h1>
+    <?php endforeach ?>
+</div>
+<div class="col-sm-12">
+    <div class="card table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Telp</th>
+                    <th>Layanan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $i = 1; ?>
+                <?php foreach ($faskategori as $row) : ?>
+                    <tr>
+                        <td class="text-center"><?= $i++; ?></td>
+                        <td><?= $row->nama_faskes; ?></td>
+                        <td><?= $row->alamat; ?></td>
+                        <td><?= $row->telp; ?></td>
+                        <td><?= $row->layanan; ?></td>
+                        <td>
+                            <a href="<?= base_url("/web/detail"); ?>" class="btn btn-sm btn-success">Detail</i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- end Tabel data -->
 <?= $this->endSection(); ?>

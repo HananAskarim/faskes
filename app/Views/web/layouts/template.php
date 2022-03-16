@@ -66,7 +66,6 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <?= $this->include('web/layouts/kategorifaskes'); ?>
                 <?= $this->renderSection('content'); ?>
             </div>
         </div>

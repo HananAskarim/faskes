@@ -24,7 +24,7 @@ class Web extends BaseController
             'title' => 'Halaman Home',
             'faskes' => $faskes,
             'kategori' => $kategori,
-            'getsegment1' => $this->request->uri->getSegment(1, '')
+            'getsegment1' => $this->request->uri->getSegment(1)
         ];
         return view('web/pages/home', $data);
     }
@@ -42,16 +42,36 @@ class Web extends BaseController
 
     public function kategori($id_kategori)
     {
+        $detailkategori = $this->faskesModel->detailKategori($id_kategori);
         $faskategori = $this->faskesModel->faskesKategori($id_kategori);
         $faskes = $this->faskesModel->getAll();
         $kategori = $this->kategoriModel->findAll();
         $data = [
-            'title' => 'Halaman Kategori',
-            'faskes' => $faskes,
+            'title' => 'Tabel Data Fasilitas Kesehatan',
+            'detailkategori' => $detailkategori,
             'faskategori' => $faskategori,
+            'faskes' => $faskes,
             'kategori' => $kategori,
             'getsegment1' => $this->request->uri->getSegment(2)
         ];
         return view('web/pages/kategori', $data);
+    }
+
+    //daftar tabel faskes yg ada icon
+    public function daftarfaskes($id_kategori)
+    {
+        $detailkategori = $this->faskesModel->detailKategori($id_kategori);
+        $faskategori = $this->faskesModel->faskesKategori($id_kategori);
+        $faskes = $this->faskesModel->getAll();
+        $kategori = $this->kategoriModel->findAll();
+        $data = [
+            'title' => 'Halaman Daftar Faskes Rumah Sakit',
+            'detailkategori' => $detailkategori,
+            'faskategori' => $faskategori,
+            'faskes' => $faskes,
+            'kategori' => $kategori,
+            'getsegment1' => $this->request->uri->getSegment(2)
+        ];
+        return view('web/pages/daftarfaskes', $data);
     }
 }
