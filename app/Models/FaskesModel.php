@@ -29,6 +29,15 @@ class FaskesModel extends Model
         return $query->getResult();
     }
 
+    //detail faskes
+    public function detailfaskes($id_faskes)
+    {
+        $builder =  $this->db->table('tbl_faskes');
+        $builder->join('kategori', 'kategori.id_kategori = tbl_faskes.id_kategori')->where('id_faskes', $id_faskes);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     //kategorisasi
     function faskesKategori($id_kategori)
     {

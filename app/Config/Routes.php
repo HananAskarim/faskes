@@ -31,10 +31,13 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// frontend
 $routes->get('/', 'Web::index');
 $routes->get('about', 'Web::about');
 $routes->get('kategori', 'Web::kategori');
 
+// halaman admin
 $routes->get('login', 'Auth::login');
 $routes->post('auth/process', 'Auth::process');
 $routes->get('logout', 'Auth::logout');

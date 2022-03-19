@@ -74,4 +74,20 @@ class Web extends BaseController
         ];
         return view('web/pages/daftarfaskes', $data);
     }
+
+    // Detail faskes
+    public function detail($id_faskes)
+    {
+        $detailfaskes = $this->faskesModel->detailfaskes($id_faskes);
+        $kategori = $this->kategoriModel->findAll();
+        $faskes = $this->faskesModel->getAll();
+        $data = [
+            'title' => 'Halaman Detail Fasilitas Kesehatan',
+            'detailfaskes' => $detailfaskes,
+            'faskes' => $faskes,
+            'kategori' => $kategori,
+            'getsegment1' => $this->request->uri->getSegment(2)
+        ];
+        return view('web/pages/detail', $data);
+    }
 }

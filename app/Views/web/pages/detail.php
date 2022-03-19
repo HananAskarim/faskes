@@ -2,13 +2,54 @@
 
 <?= $this->section('content'); ?>
 <div class="mt-3 mb-3">
-    <h1 class="text-center">Pemetaan Fasilitas Kesehatan</h1>
+    <h1 class="text-center"><?= $title; ?></h1>
 </div>
 
 <div class="row mx-auto">
-    <div class="card">
-        <div class="card-body">
-            <div id="map"></div>
+    <div class="col-sm-6 mt-3">
+        <div class="card">
+            <div class="card-body">
+                <?php foreach ($detailfaskes as $row) : ?>
+                    <img class="img-fluid" src="<?= base_url('assets/uploads/faskes/' . $row->foto); ?>" width="510px" height="410px">
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 mt-3">
+        <div class="card">
+            <div id="map" style="height: 410px;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 mt-5">
+        <div class="card">
+            <table class="table">
+                <?php foreach ($detailfaskes as $row) : ?>
+                    <tr>
+                        <td>Nama Fasilitas</td>
+                        <td>:</td>
+                        <td><?= $row->nama_faskes; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td><?= $row->alamat; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Telephone</td>
+                        <td>:</td>
+                        <td><?= $row->telp; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Layanan</td>
+                        <td>:</td>
+                        <td><?= $row->layanan; ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
         </div>
     </div>
 </div>
@@ -39,13 +80,13 @@
         id: 'mapbox/dark-v10'
     });
 
-    var faskes = L.layerGroup();
-
-    var map = L.map('map', {
-        center: [-7.418810418919889, 111.00126631256072],
-        zoom: 12,
-        layers: [peta1, faskes]
-    });
+    <?php foreach ($detailfaskes as $ow) : ?>
+        var map = L.map('map', {
+            center: [<?= $row->latitude; ?>, <?= $row->longitude; ?>],
+            zoom: 15,
+            layers: [peta1]
+        });
+    <?php endforeach ?>
 
     var baseMaps = {
         "Grayscale": peta1,
@@ -54,11 +95,7 @@
         "Dark": peta4
     };
 
-    var overLayer = {
-        "Faskes": faskes
-    };
-
-    L.control.layers(baseMaps, overLayer).addTo(map);
+    L.control.layers(baseMaps).addTo(map);
 
     // marker
     var myIcon = L.Icon.extend({
@@ -67,14 +104,12 @@
         }
     });
 
-    <?php foreach ($faskes as $row) : ?>
-        var informasi = '<table class="table"><tr><td colspan="2"><img src="<?= base_url('assets/uploads/faskes/' . $row->foto); ?>" width="200px" height="200px"></td></tr><tr><td>Nama</td><td>: <?= $row->nama_faskes ?></td></tr><tr><td colspan="2" class="text-center"><a href="/web/detail/<?= $row->id_faskes; ?>" class="btn btn-success">Detail</a></td></tr></table>';
+    <?php foreach ($detailfaskes as $row) : ?>
         var marker = L.marker([<?= $row->latitude; ?>, <?= $row->longitude; ?>], {
-                icon: new myIcon({
-                    iconUrl: '<?= base_url('assets/uploads/marker/' . $row->marker); ?>'
-                })
-            }).addTo(faskes)
-            .bindPopup(informasi);
-    <?php endforeach; ?>
+            icon: new myIcon({
+                iconUrl: '<?= base_url('assets/uploads/marker/' . $row->marker); ?>'
+            })
+        }).addTo(map)
+    <?php endforeach ?>
 </script>
 <?= $this->endSection(); ?>
