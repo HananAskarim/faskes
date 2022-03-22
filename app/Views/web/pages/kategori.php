@@ -83,7 +83,7 @@
 <!-- Tabel data -->
 <div class="mt-5 mb-3">
     <?php foreach ($detailkategori as $data) : ?>
-        <h1 class="text-center">Daftar Tabel <?= $data->nama_kategori; ?></h1>
+        <h1 class="text-center">Daftar Data <?= $data->nama_kategori; ?></h1>
     <?php endforeach ?>
 </div>
 <div class="col-sm-12">
@@ -109,7 +109,7 @@
                         <td><?= $row->telp; ?></td>
                         <td><?= $row->layanan; ?></td>
                         <td>
-                            <a href="<?= base_url("/web/detail"); ?>" class="btn btn-sm btn-success">Detail</i></a>
+                            <a href="<?= base_url("/web/detail/" . $row->id_faskes); ?>" class="btn btn-sm btn-success">Detail</i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

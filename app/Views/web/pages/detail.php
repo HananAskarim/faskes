@@ -7,14 +7,14 @@
 
 <div class="row mx-auto">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <?= input_text('latNow', '') ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <?= input_text('lngNow', '') ?>
         </div>
-        <div class="col-md-4">
-            <butto class="dariSini btn btn-primary">Posisi Saya</button>
+        <div class="col-md-6">
+            <butto class="dariSini btn btn-primary">My Location</button>
         </div>
     </div>
     <div class="col-sm-12 mt-3">
@@ -106,7 +106,7 @@
             icon: new myIcon({
                 iconUrl: '<?= base_url('assets/uploads/marker/' . $row->marker); ?>'
             })
-        }).addTo(map).bindPopup("<?= $row->nama_kategori; ?><br><?= $row->nama_faskes; ?><br><br><button class='btn btn-success d-grid mx-auto' onclick='return keSini(<?= $row->latitude; ?>,<?= $row->longitude; ?>)'>Ke Sini</button>");
+        }).addTo(map).bindPopup("<?= $row->nama_kategori; ?><br><?= $row->nama_faskes; ?><br><br><button class='btn btn-success d-grid mx-auto' onclick='return keSini(<?= $row->latitude; ?>,<?= $row->longitude; ?>)'>Lokasi</button>");
     <?php endforeach ?>
 
     // rute
@@ -143,7 +143,7 @@
             if (pos == 1) {
                 urlIcon = '<?= '/assets/web/icon/icon-user.png' ?>';
             } else if (pos == n) {
-                urlIcon = '<?= '/assets/web/icon/icon-dest.png' ?>';
+                urlIcon = '<?= '/assets/web/icon/icon-dest.gif' ?>';
             }
 
             const marker = L.marker(waypoint.latLng, {
