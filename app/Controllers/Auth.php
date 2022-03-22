@@ -48,7 +48,7 @@ class Auth extends BaseController
                     'nama' => $dataUser->nama,
                     'info' => '<div class="alert alert-success alert-dismissible">
 		                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		                    <h4><i class="icon fa fa-ban"></i> Sukses!</h4> Selamat Datang <b>' . $dataUser->nama . '</b> di Halaman Utama Aplikasi
+		                    <h4><i class="icon fa fa-ban"></i> Sukses!</h4> Selamat Datang <b>' . $dataUser->nama . '</b> di Halaman Dashboard Aplikasi
 		                  </div>',
                     'logged_in' => true
                 ]);
