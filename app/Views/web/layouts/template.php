@@ -11,6 +11,9 @@
     <!-- Leafletjs -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <!-- Leaflet search -->
+    <link href="<?= base_url('/assets/js/leaflet-search/dist/leaflet-search.min.css'); ?>" rel="stylesheet">
+    <script src="<?= base_url('/assets/js/leaflet-search/dist/leaflet-search.src.js'); ?>"></script>
     <!-- Routing machine -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
@@ -35,6 +38,44 @@
 
     h4 {
         color: aliceblue;
+    }
+
+    .search-tip b {
+        display: inline-block;
+        clear: left;
+        float: right;
+        padding: 0 4px;
+        margin-left: 4px;
+    }
+
+    .Rumah.search-tip b,
+    .Rumah.leaflet-marker-icon {
+        background: #f66
+    }
+
+    .Puskesmas.search-tip b,
+    .Puskesmas.leaflet-marker-icon {
+        background: #f66
+    }
+
+    .Klinik.search-tip b,
+    .Klinik.leaflet-marker-icon {
+        background: #f66
+    }
+
+    .Dokter.search-tip b,
+    .Dokter.leaflet-marker-icon {
+        background: #f66
+    }
+
+    .Apotek.search-tip b,
+    .Apotek.leaflet-marker-icon {
+        background: #f66
+    }
+
+    .LAB.search-tip b,
+    .LAB.leaflet-marker-icon {
+        background: #f66
     }
 </style>
 
@@ -61,9 +102,6 @@
                             <?php endforeach ?>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?= ($getsegment1 == 'about') ? 'active' : ''; ?>" href="/web/about">About</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -78,10 +116,10 @@
     </div>
 
     <!-- footer -->
-    <footer class="sticky-footer bg-dark mt-5">
+    <footer class="sticky-footer bg-dark mt-4">
         <div class="container my-auto p-3">
             <div class="copyright text-center my-auto">
-                <span class="text-white">copyright &copy;</span>
+                <span class="text-white">copyright &copy; SIG Fasilitas Kesehatan Kabupaten Sragen</span>
             </div>
         </div>
     </footer>
