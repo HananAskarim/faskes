@@ -1,13 +1,12 @@
 <?= $this->extend('web/layouts/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="mt-3 mb-3">
-    <h1 class="text-center">Pemetaan Fasilitas Kesehatan</h1>
-</div>
-
-<div class="row mx-auto">
-    <div class="card">
-        <div class="card-body">
+<div class="card mt-3">
+    <div class="card-header">
+        <h3 class="text-center">Pemetaan Fasilitas Kesehatan</h3>
+    </div>
+    <div class="card-body">
+        <div class="mx-auto">
             <div id="map"></div>
         </div>
     </div>
@@ -44,9 +43,6 @@
     });
 
     var peta2 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox/satellite-v9'
     });
 
@@ -104,7 +100,7 @@
                 layer.bindPopup(feature.properties.popUp);
             }
         }
-    }).addTo(map);
+    }).addTo(faskes);
     //akhir point faskes
 
     //pencarian
@@ -128,5 +124,62 @@
         }
     }).addTo(map);
     //akhir pencarian
+
+    //skala
+    var jsonmap = L.control.scale().addTo(map);
+
+    //legend
+    var legend = L.control({
+        position: 'bottomright'
+    });
+
+    legend.onAdd = function(map) {
+
+        var div = L.DomUtil.create('div', 'legend');
+
+        labels = ['<strong>Keterangan :</strong>'],
+
+            categories = ['Rumah sakit', 'Puskesmas', 'Klinik', 'Dokter praktek', 'Apotek', 'LAB'];
+
+        for (var i = 0; i < categories.length; i++) {
+
+            if (i == 0) {
+                div.innerHTML +=
+                    labels.push(
+                        '<img width="20" height="23" src="assets/web/icon/rumahsakit1.png">' +
+                        (categories[i] ? categories[i] : '+'));
+            } else if (i == 1) {
+                div.innerHTML +=
+                    labels.push(
+                        '<img width="20" height="23" src="assets/web/icon/puskesmas2.png">' +
+                        (categories[i] ? categories[i] : '+'));
+            } else if (i == 2) {
+                div.innerHTML +=
+                    labels.push(
+                        '<img width="20" height="23" src="assets/web/icon/klinik3.png">' +
+                        (categories[i] ? categories[i] : '+'));
+            } else if (i == 3) {
+                div.innerHTML +=
+                    labels.push(
+                        '<img width="20" height="23" src="assets/web/icon/dokterpraktek4.png">' +
+                        (categories[i] ? categories[i] : '+'));
+            } else if (i == 4) {
+                div.innerHTML +=
+                    labels.push(
+                        '<img width="20" height="23" src="assets/web/icon/apotek5.png">' +
+                        (categories[i] ? categories[i] : '+'));
+            } else {
+                div.innerHTML +=
+                    labels.push(
+                        '<img width="20" height="23" src="assets/web/icon/lab6.png">' +
+                        (categories[i] ? categories[i] : '+'));
+            }
+        }
+        div.innerHTML = labels.join('<br>');
+
+        return div;
+    };
+
+    legend.addTo(map);
 </script>
 <?= $this->endSection(); ?>

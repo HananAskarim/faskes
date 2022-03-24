@@ -1,19 +1,19 @@
 <?= $this->extend('web/layouts/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="mt-3 mb-3">
-    <?php foreach ($detailkategori as $data) : ?>
-        <h1 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan <?= $data->nama_kategori; ?></h1>
-    <?php endforeach ?>
-</div>
-
-<div class="row mx-auto">
-    <div class="card">
-        <div class="card-body">
+<div class="card mt-3">
+    <div class="card-header">
+        <?php foreach ($detailkategori as $data) : ?>
+            <h3 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan <?= $data->nama_kategori; ?></h3>
+        <?php endforeach ?>
+    </div>
+    <div class="card-body">
+        <div class="mx-auto">
             <div id="map"></div>
         </div>
     </div>
 </div>
+
 
 <script>
     var peta1 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -78,17 +78,20 @@
             }).addTo(faskes)
             .bindPopup(informasi);
     <?php endforeach; ?>
+
+    //skala
+    var jsonmap = L.control.scale().addTo(map);
 </script>
 
 <!-- Tabel data -->
-<div class="mt-5 mb-3">
+<div class="mt-3 mb-3">
     <?php foreach ($detailkategori as $data) : ?>
-        <h1 class="text-center">Daftar Data <?= $data->nama_kategori; ?></h1>
+        <h3 class="text-center"><u>Daftar Data <?= $data->nama_kategori; ?></u></h3>
     <?php endforeach ?>
 </div>
 <div class="col-sm-12">
-    <div class="card table-responsive">
-        <table class="table table-bordered">
+    <div class="table-responsive">
+        <table class="table table-bordered bg-white">
             <thead>
                 <tr class="text-center">
                     <th>No</th>

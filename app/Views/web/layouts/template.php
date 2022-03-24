@@ -29,15 +29,7 @@
     }
 
     body {
-        background-color: lightslategray;
-    }
-
-    h1 {
-        color: aliceblue;
-    }
-
-    h4 {
-        color: aliceblue;
+        background-color: whitesmoke;
     }
 
     .search-tip b {
@@ -77,13 +69,19 @@
     .LAB.leaflet-marker-icon {
         background: #f66
     }
+
+    .legend {
+        background: white;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+    }
 </style>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">WEBGIS Faskes Kab. Sragen</a>
+            <a class="navbar-brand" href="#">SIG Faskes Kab. Sragen</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

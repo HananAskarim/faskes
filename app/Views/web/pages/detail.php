@@ -1,32 +1,38 @@
 <?= $this->extend('web/layouts/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="mt-3 mb-3">
-    <h1 class="text-center"><?= $title; ?></h1>
-</div>
-
-<div class="row mx-auto">
-    <div class="row">
-        <div class="col-md-3">
-            <?= input_text('latNow', '') ?>
+<div class="card mx-auto mt-3">
+    <div class="card-header">
+        <h5 class="text-center">Rute Fasilitas Kesehatan</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="visually-hidden">
+                <div class="col-md-3">
+                    <?= input_text('latNow', '') ?>
+                </div>
+                <div class="col-md-3">
+                    <?= input_text('lngNow', '') ?>
+                </div>
+            </div>
+            <div class="col-md-12 mb-2">
+                <butto class="dariSini btn btn-primary">My Location</button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <?= input_text('lngNow', '') ?>
-        </div>
-        <div class="col-md-6">
-            <butto class="dariSini btn btn-primary">My Location</button>
+        <div>
+            <div class="col-sm-12">
+                <div id="map"></div>
+            </div>
         </div>
     </div>
-    <div class="col-sm-12 mt-3">
-        <div class="card">
-            <div id="map"></div>
-        </div>
-    </div>
 </div>
 
-<div class="row mx-auto">
-    <div class="col-sm-6 mt-5">
+<div class="row mx-auto row-cols-1 row-cols-md-2 mt-3">
+    <div class="col">
         <div class="card">
+            <div class="card-header">
+                <h5 class="text-center">Foto Fasilitas Kesehatan</h5>
+            </div>
             <div class="card-body">
                 <?php foreach ($detailfaskes as $row) : ?>
                     <img class="img-fluid" src="<?= base_url('assets/uploads/faskes/' . $row->foto); ?>" width="510px" height="410px">
@@ -34,32 +40,37 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6 mt-5">
+    <div class="col">
         <div class="card">
-            <table class="table">
-                <?php foreach ($detailfaskes as $row) : ?>
-                    <tr>
-                        <td>Nama Fasilitas</td>
-                        <td>:</td>
-                        <td><?= $row->nama_faskes; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Alamat</td>
-                        <td>:</td>
-                        <td><?= $row->alamat; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Telephone</td>
-                        <td>:</td>
-                        <td><?= $row->telp; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Layanan</td>
-                        <td>:</td>
-                        <td><?= $row->layanan; ?></td>
-                    </tr>
-                <?php endforeach ?>
-            </table>
+            <div class="card-header">
+                <h5 class="text-center">Tabel Informasi</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <?php foreach ($detailfaskes as $row) : ?>
+                        <tr>
+                            <td>Nama Fasilitas</td>
+                            <td>:</td>
+                            <td><?= $row->nama_faskes; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Alamat</td>
+                            <td>:</td>
+                            <td><?= $row->alamat; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Telephone</td>
+                            <td>:</td>
+                            <td><?= $row->telp; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Layanan</td>
+                            <td>:</td>
+                            <td><?= $row->layanan; ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -165,6 +176,9 @@
         }
     })
     control.addTo(map);
+
+    //skala
+    var jsonmap = L.control.scale().addTo(map);
 
     // posisi faskes
     function keSini(latitude, longitude) {
