@@ -52,7 +52,7 @@
                             <br />
 
                             <div>
-                                <h1><i class="fa fa-map"></i> WebGIS Faskes !</h1>
+                                <h1><i class="fa fa-map"></i> SIG Faskes !</h1>
                             </div>
                         </div>
                     </form>
