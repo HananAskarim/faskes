@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
+use App\Controllers\BaseController;
 use App\Models\UsersModel;
 
 class Auth extends BaseController
@@ -11,7 +12,7 @@ class Auth extends BaseController
         helper('form');
     }
 
-    public function login()
+    public function index()
     {
         $data = [
             'title' => 'Halaman Login',
@@ -67,6 +68,6 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to('/admin/auth');
     }
 }

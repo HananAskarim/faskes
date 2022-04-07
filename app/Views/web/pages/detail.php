@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="col-md-12 mb-2">
-                <butto class="dariSini btn btn-primary">My Location</button>
+                <button class="dariSini btn btn-primary">My Location</button>
             </div>
         </div>
         <div>
@@ -95,6 +95,7 @@
         $("[name=latNow]").val(position.coords.latitude);
         $("[name=lngNow]").val(position.coords.longitude);
     }
+    // akhir mengambil titik
 
     // map default
     let latLng = [-7.427229479486918, 111.02338789673547];
@@ -176,8 +177,12 @@
         }
     })
     control.addTo(map);
+    // akhir rute
 
-    //skala
+    // extent
+    L.control.defaultExtent().addTo(map);
+
+    // skala
     var jsonmap = L.control.scale().addTo(map);
 
     // posisi faskes

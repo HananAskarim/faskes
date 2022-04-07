@@ -14,6 +14,9 @@
     <!-- Leaflet search -->
     <link href="<?= base_url('/assets/js/leaflet-search/dist/leaflet-search.min.css'); ?>" rel="stylesheet">
     <script src="<?= base_url('/assets/js/leaflet-search/dist/leaflet-search.src.js'); ?>"></script>
+    <!-- Extent -->
+    <link href="<?= base_url('/assets/extent/leaflet.defaultextent.css'); ?>" rel="stylesheet">
+    <script src="<?= base_url('/assets/extent/leaflet.defaultextent.js'); ?>"></script>
     <!-- Routing machine -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
@@ -79,7 +82,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background: rgb(31,31,122);">
         <div class="container">
             <a class="navbar-brand" href="#">SIG Faskes Kab. Sragen</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

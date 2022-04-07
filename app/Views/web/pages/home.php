@@ -36,6 +36,7 @@
     ?>
 
     var geojsonPoint = <?= json_encode($jsonPoint, JSON_PRETTY_PRINT) ?>
+    //akhir data geojson faskes
 
     // peta
     var peta1 = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -56,8 +57,9 @@
             'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox/dark-v10'
     });
+    // akhir peta
 
-    //layers
+    //layers basemaps
     var faskes = L.layerGroup();
 
     var map = L.map('map', {
@@ -109,6 +111,7 @@
     ]);
     L.control.search({
         layer: poiLayers,
+        zoom: 19,
         initial: false,
         propertyName: 'name',
         buildTip: function(text, val) {
@@ -116,6 +119,10 @@
             return '<a href="#" class="' + kategori + '">' + text + '<b>' + kategori + '</b></a>';
         },
         marker: {
+            icon: new L.Icon({
+                iconUrl: 'assets/web/icon/iconsearch.png',
+                iconSize: [15, 15]
+            }),
             circle: {
                 radius: 20,
                 color: '#0a0',
@@ -124,6 +131,9 @@
         }
     }).addTo(map);
     //akhir pencarian
+
+    //extent
+    L.control.defaultExtent().addTo(map);
 
     //skala
     var jsonmap = L.control.scale().addTo(map);
@@ -181,5 +191,6 @@
     };
 
     legend.addTo(map);
+    //akhir legend
 </script>
 <?= $this->endSection(); ?>

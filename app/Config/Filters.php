@@ -39,8 +39,9 @@ class Filters extends BaseConfig
             'csrf',
             'usersAuth' => [
                 'except' => [
-                    'auth/*',
+                    'admin/auth*',
                     'web/*',
+                    'cari/*',
                     '/',
                 ]
             ]

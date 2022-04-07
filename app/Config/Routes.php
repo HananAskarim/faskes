@@ -38,9 +38,9 @@ $routes->get('about', 'Web::about');
 $routes->get('kategori', 'Web::kategori');
 
 // halaman admin
-$routes->get('login', 'Auth::login');
-$routes->post('auth/process', 'Auth::process');
-$routes->get('logout', 'Auth::logout');
+$routes->get('auth', 'Admin/Auth::index');
+$routes->post('auth/process', 'Admin/Auth::process');
+$routes->get('auth/logout', 'Admin/Auth::logout');
 
 $routes->get('pages', 'Admin/Pages::index');
 

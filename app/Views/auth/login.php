@@ -29,7 +29,7 @@
         <div class="login_wrapper">
             <div class="animate form login_form">
                 <section class="login_content">
-                    <form action="<?= base_url('auth/process'); ?>" method="post">
+                    <form action="<?= base_url('admin/auth/process'); ?>" method="post">
                         <?= csrf_field(); ?>
 
                         <h1>Login </h1>
