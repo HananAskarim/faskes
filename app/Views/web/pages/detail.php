@@ -28,7 +28,7 @@
 </div>
 
 <div class="row mx-auto row-cols-1 row-cols-md-2 mt-3">
-    <div class="col">
+    <div class="col mt-3">
         <div class="card">
             <div class="card-header">
                 <h5 class="text-center">Foto Fasilitas Kesehatan</h5>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="col">
+    <div class="col mt-3">
         <div class="card">
             <div class="card-header">
                 <h5 class="text-center">Tabel Informasi</h5>
@@ -52,6 +52,11 @@
                             <td>Nama Fasilitas</td>
                             <td>:</td>
                             <td><?= $row->nama_faskes; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Kategori</td>
+                            <td>:</td>
+                            <td><?= $row->nama_kategori; ?></td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
@@ -83,6 +88,10 @@
     // mengambil titik
     getLocation();
 
+    setInterval(() => {
+        getLocation();
+    }, 5000);
+
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -92,16 +101,24 @@
     }
 
     function showPosition(position) {
+        //console.log('Rute sekarang', position.coords.latitude, position.coords.longitude);
         $("[name=latNow]").val(position.coords.latitude);
         $("[name=lngNow]").val(position.coords.longitude);
+        let latLng = [position.coords.latitude, position.coords.longitude];
+        control.spliceWaypoints(0, 1, latLng);
+        if (centermap == false) {
+            map.panTo(latLng);
+            centermap = true;
+        }
     }
     // akhir mengambil titik
 
     // map default
     let latLng = [-7.427229479486918, 111.02338789673547];
+    let centermap = false;
     var map = L.map('map', {
         center: latLng,
-        zoom: 15,
+        zoom: 13,
         layers: [peta1]
     });
 
@@ -191,7 +208,7 @@
         control.spliceWaypoints(control.getWaypoints().length - 1, 1, latLng);
     }
 
-    // posisi mulai
+    // posisi awal kita
     $(document).on("click", ".dariSini", function() {
         let latLng = [$("[name=latNow]").val(), $("[name=lngNow]").val()];
         control.spliceWaypoints(0, 1, latLng);

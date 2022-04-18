@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 <div class="card mt-3">
-    <div class="card-header">
+    <div id="scroll" class="card-header">
         <?php foreach ($detailkategori as $data) : ?>
             <h3 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan <?= $data->nama_kategori; ?></h3>
         <?php endforeach ?>
@@ -89,8 +89,17 @@
     var jsonmap = L.control.scale().addTo(map);
 
     //posisi faskes dari tabel
-    function lokasi(latitude, longitude) {
+    // function lokasi(latitude, longitude) {
+    //     map.setView([latitude, longitude], 19);
+    // }
+
+    //button zoom to detail faskes
+    const lokasi = (latitude, longitude) => {
         map.setView([latitude, longitude], 19);
+        const component = document.getElementById('scroll');
+        component.scrollIntoView({
+            behavior: "smooth"
+        });
     }
 </script>
 
@@ -123,9 +132,9 @@
                         <td><?= $row->telp; ?></td>
                         <td><?= $row->layanan; ?></td>
                         <td>
-                            <a href="<?= base_url("/web/detail/" . $row->id_faskes); ?>" class="btn btn-sm btn-success">Detail</i></a>
+                            <a href="<?= base_url("/web/detail/" . $row->id_faskes); ?>" class="btn btn-sm btn-success" style="width: 65px;">Detail</i></a>
                             <br><br>
-                            <button class='btn btn-info' onclick='return lokasi(<?= $row->latitude; ?>,<?= $row->longitude; ?>)'>Lokasi</button>
+                            <button class='btn btn-info' style="width: 65px;" onclick='return lokasi(<?= $row->latitude; ?>,<?= $row->longitude; ?>)'>Lokasi</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

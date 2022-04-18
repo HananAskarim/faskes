@@ -23,6 +23,8 @@
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <!-- Ajax -->
+    <script src="<?= base_url('/assets/js/leaflet.ajax.js'); ?>"></script>
 
     <title><?= $title; ?></title>
 </head>
@@ -45,32 +47,37 @@
 
     .Rumah.search-tip b,
     .Rumah.leaflet-marker-icon {
-        background: #f66
+        background: #E74C3C
     }
 
     .Puskesmas.search-tip b,
     .Puskesmas.leaflet-marker-icon {
-        background: #f66
+        background: #3498DB
     }
 
     .Klinik.search-tip b,
     .Klinik.leaflet-marker-icon {
-        background: #f66
+        background: #E67E22
     }
 
     .Dokter.search-tip b,
     .Dokter.leaflet-marker-icon {
-        background: #f66
+        background: #1ABC9C
     }
 
     .Apotek.search-tip b,
     .Apotek.leaflet-marker-icon {
-        background: #f66
+        background: #9B59B6
     }
 
     .LAB.search-tip b,
     .LAB.leaflet-marker-icon {
-        background: #f66
+        background: #F1C40F
+    }
+
+    .BPJS.search-tip b,
+    .BPJS.leaflet-marker-icon {
+        background: #2ECC71
     }
 
     .legend {
@@ -84,7 +91,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background: rgb(31,31,122);">
         <div class="container">
-            <a class="navbar-brand" href="#">SIG Faskes Kab. Sragen</a>
+            <img src="<?= base_url('/assets/web/icon/logosrg.png'); ?>" width="50" alt="">
+            <a class="navbar-brand" href="#">SIGFASKES SRAGEN</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -137,6 +145,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 
 </html>

@@ -1,6 +1,40 @@
 <?= $this->extend('web/layouts/template'); ?>
 
 <?= $this->section('content'); ?>
+<!-- Faskes -->
+<!-- <div class="text-center mx-auto row mt-5 row-cols-3">
+    <div class="col-lg-2">
+        <div class="p-3 mb-5 border border-dark shadow" style="background-color: rgb(0,26,77);">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Rumah Sakit"><img src="/assets/web/icon/rumahsakit.png" alt="Rumah Sakit" width="40"></a>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="p-3 mb-5 border border-dark shadow" style="background-color: rgb(0,26,77);">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Puskesmas"><img src="/assets/web/icon/puskesmas.png" alt="Puskesmas" width="40"></a>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="p-3 mb-5 border border-dark shadow" style="background-color: rgb(0,26,77);">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Klinik"><img src="/assets/web/icon/clinic.png" alt="Klinik" width="40"></a>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="p-3 mb-5 border border-dark shadow" style="background-color: rgb(0,26,77);">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Apotek"><img src="/assets/web/icon/apotek.png" alt="Apotek" width="40"></a>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="p-3 mb-5 border border-dark shadow" style="background-color: rgb(0,26,77);">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Dokter Praktek"><img src="/assets/web/icon/dokterpraktek.png" alt="Dokter Praktek" width="40"></a>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="p-3 mb-5 border border-dark shadow" style="background-color: rgb(0,26,77);">
+            <a href="#" data-toggle="tooltip" data-placement="top" title="Laboratorium"><img src="/assets/web/icon/lab.png" alt="LAB" width="40"></a>
+        </div>
+    </div>
+</div> -->
+<!-- end Faskes -->
 <div class="card mt-3">
     <div class="card-header">
         <h3 class="text-center">Pemetaan Fasilitas Kesehatan</h3>
@@ -13,7 +47,7 @@
 </div>
 
 <script>
-    //data geojson faskes
+    //data geojson point faskes
     <?php
     $jsonPoint = array();
     foreach ($faskes as $row) {
@@ -61,10 +95,11 @@
 
     //layers basemaps
     var faskes = L.layerGroup();
+    var kabupaten = L.layerGroup();
 
     var map = L.map('map', {
         center: [-7.418810418919889, 111.00126631256072],
-        zoom: 12,
+        zoom: 11,
         layers: [peta1, faskes]
     });
 
@@ -76,7 +111,8 @@
     };
 
     var overLayer = {
-        "Faskes": faskes
+        "Faskes": faskes,
+        "Sragen": kabupaten
     };
 
     L.control.layers(baseMaps, overLayer).addTo(map);
@@ -149,7 +185,7 @@
 
         labels = ['<strong>Keterangan :</strong>'],
 
-            categories = ['Rumah sakit', 'Puskesmas', 'Klinik', 'Dokter praktek', 'Apotek', 'LAB'];
+            categories = ['Rumah sakit', 'Puskesmas', 'Klinik', 'Dokter praktek', 'Apotek', 'LAB', 'BPJS'];
 
         for (var i = 0; i < categories.length; i++) {
 
@@ -178,10 +214,15 @@
                     labels.push(
                         '<img width="20" height="23" src="assets/web/icon/apotek5.png">' +
                         (categories[i] ? categories[i] : '+'));
-            } else {
+            } else if (i == 5) {
                 div.innerHTML +=
                     labels.push(
                         '<img width="20" height="23" src="assets/web/icon/lab6.png">' +
+                        (categories[i] ? categories[i] : '+'));
+            } else {
+                div.innerHTML +=
+                    labels.push(
+                        '<img width="20" height="23" src="assets/web/icon/bpjs7.png">' +
                         (categories[i] ? categories[i] : '+'));
             }
         }
@@ -192,5 +233,28 @@
 
     legend.addTo(map);
     //akhir legend
+
+    // warna utk geojson
+    var myStyle = {
+        "color": "#ff7800",
+        "weight": 1,
+        "opacity": 0.65
+    };
+
+    //geojspn
+    function popUp(f, l) {
+        var out = [];
+        if (f.properties) {
+            // for (key in f.properties) {
+            // }
+            out.push("Kecamatan : " + f.properties['NAME_3']);
+            l.bindPopup(out.join("<br />"));
+        }
+    }
+    var jsonTest = new L.GeoJSON.AJAX(["assets/js/geojson/sragen.geojson"], {
+        onEachFeature: popUp,
+        style: myStyle
+    }).addTo(kabupaten);
+    //akhir geojson
 </script>
 <?= $this->endSection(); ?>
