@@ -111,6 +111,9 @@
                             <?php endforeach ?>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($getsegment1 == 'daftarfaskes') ? 'active' : ''; ?>" href="/web/daftarfaskes">Daftar Faskes</a>
+                    </li>
                 </ul>
             </div>
         </div>

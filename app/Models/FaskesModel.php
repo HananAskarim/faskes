@@ -12,6 +12,7 @@ class FaskesModel extends Model
     protected $useTimestamps = true;
     protected $allowedFields = ['id_kategori', 'nama_faskes', 'alamat', 'telp', 'layanan', 'latitude', 'longitude', 'foto'];
 
+    // mengambil data dengan join
     function getAll()
     {
         $builder = $this->db->table('tbl_faskes');
@@ -45,5 +46,11 @@ class FaskesModel extends Model
         $builder->join('kategori', 'kategori.id_kategori = tbl_faskes.id_kategori')->where('tbl_faskes.id_kategori', $id_kategori);
         $query = $builder->get();
         return $query->getResult();
+    }
+
+    //tabel pencarian di web
+    public function search($keyword)
+    {
+        return $this->table('tbl_faskes')->like('nama_faskes', $keyword)->orlike('alamat', $keyword);
     }
 }
