@@ -3,7 +3,8 @@
 <?= $this->section('content'); ?>
 <div class="card mx-auto mt-3">
     <div class="card-header">
-        <h5 class="text-center">Rute Fasilitas Kesehatan</h5>
+        <h5 class="text-center">Maps Rute Fasilitas Kesehatan</h5>
+        Klik marker faskes jika ingin melihat rute
     </div>
     <div class="card-body">
         <div class="row">
@@ -43,7 +44,7 @@
     <div class="col mt-3">
         <div class="card">
             <div class="card-header">
-                <h5 class="text-center">Tabel Informasi</h5>
+                <h5 class="text-center">Tabel Detail Informasi</h5>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -126,7 +127,7 @@
     // marker
     var myIcon = L.Icon.extend({
         options: {
-            iconSize: [38, 40],
+            iconSize: [34, 36],
         }
     });
 
@@ -135,7 +136,7 @@
             icon: new myIcon({
                 iconUrl: '<?= base_url('assets/uploads/marker/' . $row->marker); ?>'
             })
-        }).addTo(map).bindPopup("<?= $row->nama_kategori; ?><br><?= $row->nama_faskes; ?><br><br><button class='btn btn-success d-grid mx-auto' onclick='return keSini(<?= $row->latitude; ?>,<?= $row->longitude; ?>)'>Lokasi</button>");
+        }).addTo(map).bindPopup("<?= $row->nama_kategori; ?><br><?= $row->nama_faskes; ?><br><br><button class='btn btn-success d-grid mx-auto' onclick='return keSini(<?= $row->latitude; ?>,<?= $row->longitude; ?>)'>Kunjungi</button>");
     <?php endforeach ?>
 
     // rute
@@ -172,7 +173,7 @@
             if (pos == 1) {
                 urlIcon = '<?= '/assets/web/icon/icon-user.png' ?>';
             } else if (pos == n) {
-                urlIcon = '<?= '/assets/web/icon/icon-dest.gif' ?>';
+                urlIcon = '<?= '/assets/web/icon/icon-dest.png' ?>';
             }
 
             const marker = L.marker(waypoint.latLng, {

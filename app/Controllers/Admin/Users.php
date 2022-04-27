@@ -76,7 +76,7 @@ class Users extends BaseController
     {
         $dataUsers = $this->usersModel->find($id);
         if (empty($dataUsers)) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Admin tkidak ditemukan !');
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Admin tidak ditemukan !');
         }
         $data = [
             'title' => 'Admin',

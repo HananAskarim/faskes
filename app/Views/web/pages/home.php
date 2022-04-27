@@ -37,7 +37,8 @@
 <!-- end Faskes -->
 <div class="card mt-3">
     <div class="card-header">
-        <h3 class="text-center">Pemetaan Fasilitas Kesehatan</h3>
+        <h4 class="text-center">Sistem Informasi Geografis Persebaran Fasilitas Kesehatan Di Sragen</h4>
+        Klik pada marker untuk melihat detail lokasi
     </div>
     <div class="card-body">
         <div class="mx-auto">
@@ -57,7 +58,7 @@
             "name" => $row->nama_faskes,
             "kategori" => $row->nama_kategori,
             "icon" => ('assets/uploads/marker/' . $row->marker),
-            "popUp" => '<table class="table"><tr><td colspan="2"><img src="' . ('assets/uploads/faskes/' . $row->foto) . '" width="200px" height="200px"></td></tr><tr><td>Nama</td><td>: ' . $row->nama_faskes . '</td></tr><tr><td colspan="2" class="text-center"><a href="/web/detail/' . $row->id_faskes . '" <button class="btn btn-success">Detail</button></a></td></tr></table>'
+            "popUp" => '<table class="table"><tr><td colspan="2"><img src="' . ('assets/uploads/faskes/' . $row->foto) . '" width="200px" height="200px"></td></tr><tr><td>Nama</td><td>: ' . $row->nama_faskes . '</td></tr><tr><td colspan="2" class="text-center"><a href="/web/detail/' . $row->id_faskes . '"> <button class="btn btn-success">Detail</button></a></td></tr></table>'
         ];
         $saveJson['geometry'] = [
             "type" => "Point",
@@ -100,7 +101,7 @@
     var map = L.map('map', {
         center: [-7.418810418919889, 111.00126631256072],
         zoom: 11,
-        layers: [peta1, faskes]
+        layers: [peta1, faskes, kabupaten]
     });
 
     var baseMaps = {
@@ -112,7 +113,7 @@
 
     var overLayer = {
         "Faskes": faskes,
-        "Sragen": kabupaten
+        "Batas Sragen": kabupaten
     };
 
     L.control.layers(baseMaps, overLayer).addTo(map);
@@ -120,7 +121,7 @@
     // marker
     var myIcon = L.Icon.extend({
         options: {
-            iconSize: [38, 40],
+            iconSize: [34, 36],
         }
     });
 
@@ -185,7 +186,7 @@
 
         labels = ['<strong>Keterangan :</strong>'],
 
-            categories = ['Rumah sakit', 'Puskesmas', 'Klinik', 'Dokter praktek', 'Apotek', 'LAB', 'BPJS'];
+            categories = ['Rumah sakit', 'Puskesmas', 'Klinik', 'Dokter praktek', 'Apotek', 'LAB'];
 
         for (var i = 0; i < categories.length; i++) {
 
@@ -214,15 +215,10 @@
                     labels.push(
                         '<img width="20" height="23" src="assets/web/icon/apotek5.png">' +
                         (categories[i] ? categories[i] : '+'));
-            } else if (i == 5) {
-                div.innerHTML +=
-                    labels.push(
-                        '<img width="20" height="23" src="assets/web/icon/lab6.png">' +
-                        (categories[i] ? categories[i] : '+'));
             } else {
                 div.innerHTML +=
                     labels.push(
-                        '<img width="20" height="23" src="assets/web/icon/bpjs7.png">' +
+                        '<img width="20" height="23" src="assets/web/icon/lab6.png">' +
                         (categories[i] ? categories[i] : '+'));
             }
         }
@@ -245,8 +241,6 @@
     function popUp(f, l) {
         var out = [];
         if (f.properties) {
-            // for (key in f.properties) {
-            // }
             out.push("Kecamatan : " + f.properties['NAME_3']);
             l.bindPopup(out.join("<br />"));
         }

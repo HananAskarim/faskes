@@ -28,7 +28,6 @@
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Telp</th>
-                    <th>Layanan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -40,7 +39,6 @@
                         <td><?= $row->nama_faskes; ?></td>
                         <td><?= $row->alamat; ?></td>
                         <td><?= $row->telp; ?></td>
-                        <td><?= $row->layanan; ?></td>
                         <td>
                             <a href="<?= base_url("/web/detail/" . $row->id_faskes); ?>" class="btn btn-sm btn-success" style="width: 65px;">Detail</i></a>
                         </td>

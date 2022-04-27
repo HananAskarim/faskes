@@ -12,7 +12,7 @@ class FaskesModel extends Model
     protected $useTimestamps = true;
     protected $allowedFields = ['id_kategori', 'nama_faskes', 'alamat', 'telp', 'layanan', 'latitude', 'longitude', 'foto'];
 
-    // mengambil data dengan join
+    // mengambil data dengan 2 tabel
     function getAll()
     {
         $builder = $this->db->table('tbl_faskes');

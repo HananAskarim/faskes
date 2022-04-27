@@ -133,6 +133,10 @@ class Kategori extends BaseController
         if (empty($dataKategori)) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Data kategori tidak ditemukan !');
         }
+
+        //hapus marker
+        unlink("assets/uploads/marker/$dataKategori->marker");
+
         $this->kategoriModel->delete($id);
         session()->setFlashdata('message', 'Delete data kategori berhasil');
         return redirect()->to('/admin/kategori');

@@ -23,7 +23,7 @@ class Faskes extends BaseController
     {
         $faskes = $this->faskesModel->getAll();
         $data = [
-            'title' => 'Data Faskes',
+            'title' => 'Halaman Data Faskes',
             'faskes' => $faskes
         ];
         return view('admin/faskes/index', $data);
@@ -78,11 +78,11 @@ class Faskes extends BaseController
                 ]
             ],
             'foto' => [
-                'rules' => 'uploaded[foto]|mime_in[foto,image/jpg,image/jpeg,image/gif,image/png]|max_size[foto,2048]',
+                'rules' => 'is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/gif,image/png]|max_size[foto,2048]',
                 'errors' => [
-                    'uploaded' => 'Harus ada file yang diisi',
                     'mime_in' => 'File extention berupa jpg,jpeg,gif,png',
-                    'max_size' => 'Ukuran file maksimal 2 MB'
+                    'max_size' => 'Ukuran file maksimal 2 MB',
+                    'is_image' => 'Yang anda pilih bukan gambar'
                 ]
             ]
         ])) {
@@ -91,7 +91,14 @@ class Faskes extends BaseController
         }
 
         $gambarFaskes = $this->request->getFile('foto');
-        $fileName = $gambarFaskes->getRandomName();
+        // apakah tidak ada gambar yang di upload
+        if ($gambarFaskes->getError() == 4) {
+            $fileName = 'default.png';
+        } else {
+            $fileName = $gambarFaskes->getRandomName();
+            $gambarFaskes->move('assets/uploads/faskes', $fileName);
+        }
+
         $this->faskesModel->insert([
             'id_kategori'   => $this->request->getVar('id_kategori'),
             'nama_faskes'   => $this->request->getVar('nama_faskes'),
@@ -102,7 +109,6 @@ class Faskes extends BaseController
             'longitude'     => $this->request->getVar('longitude'),
             'foto'          => $fileName
         ]);
-        $gambarFaskes->move('assets/uploads/faskes', $fileName);
         session()->setFlashdata('message', 'Tambah data faskes berhasil');
         return redirect()->to('/admin/faskes');
     }
@@ -171,6 +177,7 @@ class Faskes extends BaseController
             'nama_faskes' => $this->request->getVar('nama_faskes'),
             'id_kategori' => $this->request->getVar('id_kategori'),
             'alamat' => $this->request->getVar('alamat'),
+            'kelas' => $this->request->getVar('kelas'),
             'telp' => $this->request->getVar('telp'),
             'layanan' => $this->request->getVar('layanan'),
             'latitude' => $this->request->getVar('latitude'),
@@ -210,6 +217,12 @@ class Faskes extends BaseController
         if (empty($dataFaskes)) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Faskes Tidak Ditemukan !');
         }
+
+        if ($dataFaskes->foto != 'default.png') {
+            // hapus foto
+            unlink('assets/uploads/faskes/' . $dataFaskes->foto);
+        }
+
         $this->faskesModel->delete($id);
         session()->setFlashdata('message', 'Delete Data Faskes Berhasil');
         return redirect()->to('/admin/faskes');

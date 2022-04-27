@@ -67,13 +67,13 @@
     // marker
     var myIcon = L.Icon.extend({
         options: {
-            iconSize: [38, 40],
+            iconSize: [34, 36],
         }
     });
 
     //menampilkan marker
     <?php foreach ($faskategori as $row) : ?>
-        var informasi = '<table class="table"><tr><td colspan="2"><img src="<?= base_url('assets/uploads/faskes/' . $row->foto); ?>" width="200px" height="200px"></td></tr><tr><td>Nama</td><td>: <?= $row->nama_faskes ?></td></tr><tr><td colspan="2" class="text-center"><a href="/web/detail/<?= $row->id_faskes; ?>" class="btn btn-success">Detail</a></td></tr></table>';
+        var informasi = '<table class="table"><tr><td colspan="2"><img src="<?= base_url('assets/uploads/faskes/' . $row->foto); ?>" width="200px" height="200px"></td></tr><tr><td>Nama</td><td>: <?= $row->nama_faskes ?></td></tr><tr><td colspan="2" class="text-center"><a href="/web/detail/<?= $row->id_faskes; ?>"> <button class="btn btn-success">Detail</button></a></td></tr></table>';
         var marker = L.marker([<?= $row->latitude; ?>, <?= $row->longitude; ?>], {
                 icon: new myIcon({
                     iconUrl: '<?= base_url('assets/uploads/marker/' . $row->marker); ?>'
@@ -118,7 +118,6 @@
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>Telp</th>
-                    <th>Layanan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -130,7 +129,6 @@
                         <td><?= $row->nama_faskes; ?></td>
                         <td><?= $row->alamat; ?></td>
                         <td><?= $row->telp; ?></td>
-                        <td><?= $row->layanan; ?></td>
                         <td>
                             <a href="<?= base_url("/web/detail/" . $row->id_faskes); ?>" class="btn btn-sm btn-success" style="width: 65px;">Detail</i></a>
                             <br><br>

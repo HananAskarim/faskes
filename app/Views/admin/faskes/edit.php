@@ -44,7 +44,7 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="alamat">Alamat <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="alamat" name="alamat" class="form-control " value="<?= $faskes->alamat; ?>" autofocus>
+                    <input type="text" id="alamat" name="alamat" class="form-control " value="<?= $faskes->alamat; ?>">
                 </div>
             </div>
             <div class="item form-group">

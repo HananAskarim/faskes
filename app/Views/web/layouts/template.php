@@ -91,7 +91,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background: rgb(31,31,122);">
         <div class="container">
-            <img src="<?= base_url('/assets/web/icon/logosrg.png'); ?>" width="50" alt="">
+            <!-- <img src="<?= base_url('/assets/web/icon/logosrg.png'); ?>" width="50" alt=""> -->
             <a class="navbar-brand" href="#">SIGFASKES SRAGEN</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

@@ -42,7 +42,7 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="alamat">Alamat <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="alamat" name="alamat" class="form-control " value="<?= old('alamat'); ?>" autofocus>
+                    <input type="text" id="alamat" name="alamat" class="form-control " value="<?= old('alamat'); ?>">
                 </div>
             </div>
             <div class="item form-group">
@@ -73,11 +73,20 @@
                     <input type="text" id="longitude" name="longitude" class="form-control " value="<?= old('longitude'); ?>">
                 </div>
             </div>
+
+            <div class="item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align">
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                    <img src="<?= base_url("assets/uploads/faskes/default.png"); ?>" class="rounded img-preview" width="150px">
+                </div>
+            </div>
+
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="foto">Foto <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="file" id="foto" name="foto" class="form-control ">
+                    <input type="file" id="foto" name="foto" class="form-control" onchange="previewImg()">
                 </div>
             </div>
             <div class="ln_solid"></div>
