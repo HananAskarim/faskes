@@ -2,8 +2,8 @@
 
 <?= $this->section('content'); ?>
 <!-- Tabel data -->
-<div class="mt-3 mb-3">
-    <h3 class="text-center">Daftar Tabel Fasilitas Kesehatan Kabupaten Sragen</h3>
+<div class="mt-4 mb-3">
+    <h2 class="text-center">Daftar Tabel Fasilitas Kesehatan Kabupaten Sragen</h2>
 </div>
 <div class="row">
     <div class="col-lg-3">

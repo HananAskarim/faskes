@@ -1,11 +1,14 @@
 <?= $this->extend('web/layouts/template'); ?>
 
 <?= $this->section('content'); ?>
+<div class="mt-4">
+    <?php foreach ($detailkategori as $data) : ?>
+        <h2 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan <?= $data->nama_kategori; ?></h2>
+    <?php endforeach ?>
+</div>
 <div class="card mt-3">
     <div id="scroll" class="card-header">
-        <?php foreach ($detailkategori as $data) : ?>
-            <h3 class="text-center">Pemetaan Fasilitas Kesehatan Berdasarkan <?= $data->nama_kategori; ?></h3>
-        <?php endforeach ?>
+        Klik <i>marker</i> jika ingin langsung ke halaman detail
     </div>
     <div class="card-body">
         <div class="mx-auto">
@@ -106,7 +109,7 @@
 <!-- Tabel data -->
 <div class="mt-3 mb-3">
     <?php foreach ($detailkategori as $data) : ?>
-        <h3 class="text-center"><u>Daftar Data <?= $data->nama_kategori; ?></u></h3>
+        <h2 class="text-center"><u>Daftar Data <?= $data->nama_kategori; ?></u></h2>
     <?php endforeach ?>
 </div>
 <div class="col-sm-12">

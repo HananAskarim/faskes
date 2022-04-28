@@ -35,10 +35,12 @@
     </div>
 </div> -->
 <!-- end Faskes -->
+<div class="text-center mt-4 mb-3">
+    <h2>Sistem Informasi Geografis Persebaran Fasilitas Kesehatan Sragen</h2>
+</div>
 <div class="card mt-3">
     <div class="card-header">
-        <h4 class="text-center">Sistem Informasi Geografis Persebaran Fasilitas Kesehatan Di Sragen</h4>
-        Klik pada marker untuk melihat detail lokasi
+        Klik <i>marker</i> untuk melihat detail lokasi
     </div>
     <div class="card-body">
         <div class="mx-auto">

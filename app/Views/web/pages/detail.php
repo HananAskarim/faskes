@@ -1,10 +1,12 @@
 <?= $this->extend('web/layouts/template'); ?>
 
 <?= $this->section('content'); ?>
+<div class="text-center mt-4 mb-3">
+    <h2>Maps Rute Fasilitas Kesehatan</h2>
+</div>
 <div class="card mx-auto mt-3">
     <div class="card-header">
-        <h5 class="text-center">Maps Rute Fasilitas Kesehatan</h5>
-        Klik marker faskes jika ingin melihat rute
+        Klik <i>marker</i> faskes jika ingin melihat rute
     </div>
     <div class="card-body">
         <div class="row">
