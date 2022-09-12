@@ -1,3 +1,8 @@
+# Tugas Akhir Kuliah
+
+Sistem Informasi Geografis Fasilitas Kesehatan Kabupaten Sragen merupakan sistem yang dikembangkan dengan menggunakan Codeigniter 4.
+Sistem ini dibuat untuk memudahkan masyarakat mencari letak informasi fasilitas kesehatan yang ada di Kabutapen Sragen, sistem ini memiliki fitur seperti pencarian fasilitas kesehatan, melihat faskes berdasarkan kategori, melihat daftar faskes, melihat detail informasi, dan dapat melihat rute faskes. website ini juga dilengkapi dashboard admin agar mudah dalam mengelola data fasilitas kesehatan.
+
 # CodeIgniter 4 Application Starter
 
 ## requirement
