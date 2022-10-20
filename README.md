@@ -9,7 +9,7 @@ Sistem ini dibuat untuk memudahkan masyarakat mencari letak informasi fasilitas 
 
 - PHP version 7.4.3
 - Codeigniter 4.1.7
-- XAMPP server
+- XAMPP server 3.2.4
 - leaflet.js
 
 ## What is CodeIgniter?
